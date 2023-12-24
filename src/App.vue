@@ -29,7 +29,7 @@
       <h4>{{products[2]}}</h4>
       <p>50만원</p>
       <button @click="increase3">허위매물신고</button>
-      <span>신고수 : {{ 신고수3 }}</span>
+      <span>신고수? : {{ 신고수3 }}</span>
     </div>
   </div>
 </template>
