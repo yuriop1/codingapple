@@ -3,6 +3,9 @@
     <div class="white-bg">
       <h4>상세페이지</h4>
       <p>상세페이지내용</p>
+      <div>
+
+      </div>
       <button @click="모달창오픈여부 = false">닫기</button>
     </div>
   </div>
@@ -10,7 +13,14 @@
     <div class="menu">
       <a v-for="keyname in menus" :key="keyname">{{ keyname }}</a>
     </div>
-    <div>
+    adf
+    <div v-for="(room, i) in 원룸들" :key="i">
+      <img :src="room.image" class="room-img">
+      <h4>{{ room.title }}</h4>
+      <p>{{ room.price }}원</p>
+    </div>
+
+    <!-- <div>
       <img :src="원룸들[0].image" class="roomSize">
       <h4 @click="모달창오픈여부 = true">{{원룸들[0].title}}</h4>
       <p>{{원룸들[0].price}}원</p>
@@ -30,12 +40,15 @@
       <p>50만원</p>
       <button @click="increase3">허위매물신고</button>
       <span>신고수? : {{ 신고수3 }}</span>
-    </div>
+    </div> -->
   </div>
+
+
 </template>
 
 <script>
-import oneRoomData from './assets/oneRoom'
+import oneRoomData from './assets/oneRoom.js';
+
 
 export default {
   name: 'App',
