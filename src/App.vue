@@ -1,8 +1,10 @@
 <template>
-  <div class="black-bg" v-if="모달창오픈여부 == true">
+  <div  class="black-bg" v-if="모달창오픈여부 == true">
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지내용</p>
+      <img :src="원룸들[popupOpenCount].image" class="room-img">
+      <h4>{{ 원룸들[popupOpenCount].title }}</h4>
+      <p>{{ 원룸들[popupOpenCount].price }}</p>
+      <pre>{{ 원룸들[popupOpenCount].content }}</pre>
       <div>
 
       </div>
@@ -13,11 +15,10 @@
     <div class="menu">
       <a v-for="keyname in menus" :key="keyname">{{ keyname }}</a>
     </div>
-    adf
-    <div v-for="(room, i) in 원룸들" :key="i">
-      <img :src="room.image" class="room-img">
-      <h4>{{ room.title }}</h4>
-      <p>{{ room.price }}원</p>
+    <div v-for="(room, i) in 원룸들" :key="i" >
+      <img :src="room.image" class="room-img" style="width: 700px;  height:300px;"> 
+      <h4 @click="모달창오픈여부 = true; popupOpenCount=[i]">{{ 원룸들[i].title }}</h4>
+      <p>{{ 원룸들[i].price }}원</p>
     </div>
 
     <!-- <div>
@@ -55,6 +56,7 @@ export default {
   data(){
     return{ 
       모달창오픈여부 : false,
+      popupOpenCount : 0,
       신고수1 : 0,
       신고수2 : 0,
       신고수3 : 0,
