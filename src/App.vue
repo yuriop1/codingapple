@@ -1,20 +1,12 @@
 <template>
-  <div  class="black-bg" v-if="모달창오픈여부 == true">
-    <div class="white-bg">
-      <img :src="원룸들[popupOpenCount].image" class="room-img">
-      <h4>{{ 원룸들[popupOpenCount].title }}</h4>
-      <p>{{ 원룸들[popupOpenCount].price }}</p>
-      <pre>{{ 원룸들[popupOpenCount].content }}</pre>
-      <div>
-
-      </div>
-      <button @click="모달창오픈여부 = false">닫기</button>
-    </div>
-  </div>
+  <modalTop/>
   <div>
     <div class="menu">
       <a v-for="keyname in menus" :key="keyname">{{ keyname }}</a>
     </div>
+    <DisCountRoom
+></DisCountRoom>
+
     <div v-for="(room, i) in 원룸들" :key="i" >
       <img :src="room.image" class="room-img" style="width: 700px;  height:300px;"> 
       <h4 @click="모달창오픈여부 = true; popupOpenCount=[i]">{{ 원룸들[i].title }}</h4>
@@ -42,6 +34,7 @@
       <button @click="increase3">허위매물신고</button>
       <span>신고수? : {{ 신고수3 }}</span>
     </div> -->
+
   </div>
 
 
@@ -49,7 +42,8 @@
 
 <script>
 import oneRoomData from './assets/oneRoom.js';
-
+import DisCountRoom from './DiscountRoom.vue';
+import ModalTop from './ModalTop.vue'
 
 export default {
   name: 'App',
@@ -65,6 +59,7 @@ export default {
       원룸들 : oneRoomData,
     }
   },
+
   methods : {
     increase1(){
       this.신고수1 +=1;
@@ -76,8 +71,10 @@ export default {
       this.신고수3 +=1;
     },
   },
-  components: {
-  }
+  components:{
+    DisCountRoom : DisCountRoom,
+    ModalTop,
+  },
 }
 
 </script>
@@ -118,6 +115,11 @@ div {
 .menu a {
   color :aliceblue;
   padding : 10px;
-
+}
+.discount {
+  background: #eee;
+  padding: 10px;
+  margin:10px;
+  border-radius:5px;
 }
 </style>
