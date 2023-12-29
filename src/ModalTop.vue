@@ -5,17 +5,19 @@
       <h4>{{ 원룸들[popupOpenCount].title }}</h4>
       <p>{{ 원룸들[popupOpenCount].price }}원</p>
       <pre>{{ 원룸들[popupOpenCount].content }}</pre>
-      <div>
-
-      </div>
-      <button @click="모달창오픈여부 = false">닫기</button>
+      <button @click="$emit('closePopup')">닫기</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'ModalTop',
+  props: {
+    원룸들 : Array,
+    모달창오픈여부 : Boolean, 
+    popupOpenCount : Number
+  },
 }
 </script>
 

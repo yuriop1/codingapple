@@ -1,40 +1,11 @@
 <template>
-  <modalTop/>
+  <modalTop :원룸들 = "원룸들" :popupOpenCount="popupOpenCount" :모달창오픈여부="모달창오픈여부" @closePopup="모달창오픈여부 = false"></modalTop>
   <div>
     <div class="menu">
       <a v-for="keyname in menus" :key="keyname">{{ keyname }}</a>
     </div>
-    <DisCountRoom
-></DisCountRoom>
-
-    <div v-for="(room, i) in 원룸들" :key="i" >
-      <img :src="room.image" class="room-img" style="width: 700px;  height:300px;"> 
-      <h4 @click="모달창오픈여부 = true; popupOpenCount=[i]">{{ 원룸들[i].title }}</h4>
-      <p>{{ 원룸들[i].price }}원</p>
-    </div>
-
-    <!-- <div>
-      <img :src="원룸들[0].image" class="roomSize">
-      <h4 @click="모달창오픈여부 = true">{{원룸들[0].title}}</h4>
-      <p>{{원룸들[0].price}}원</p>
-      <button @click="increase1">허위매물신고</button>
-      <span>신고수 : {{ 신고수1 }}</span>
-    </div>
-    <div>
-      <img :src="원룸들[1].image" class="roomSize">
-      <h4 @click="모달창오픈여부 = true">{{원룸들[0].title}}</h4>
-      <p>{{원룸들[0].price}}원</p>
-      <button @click="increase2">허위매물신고</button>
-      <span>신고수 : {{ 신고수2 }}</span>
-    </div>
-    <div>
-      <img :src="원룸들[2].image" class="roomSize">
-      <h4>{{products[2]}}</h4>
-      <p>50만원</p>
-      <button @click="increase3">허위매물신고</button>
-      <span>신고수? : {{ 신고수3 }}</span>
-    </div> -->
-
+    <DisCountRoom></DisCountRoom>
+    <Card :원룸 = "원룸들[i]" v-for="(room, i) in 원룸들" :key="room" @openModal="모달창오픈여부 = true; popupOpenCount = $event"></Card>
   </div>
 
 
@@ -43,7 +14,8 @@
 <script>
 import oneRoomData from './assets/oneRoom.js';
 import DisCountRoom from './DiscountRoom.vue';
-import ModalTop from './ModalTop.vue'
+import ModalTop from './ModalTop.vue';
+import Card from './Card.vue';
 
 export default {
   name: 'App',
@@ -59,7 +31,11 @@ export default {
       원룸들 : oneRoomData,
     }
   },
-
+  components:{
+    DisCountRoom : DisCountRoom,
+    ModalTop,
+    Card,
+  },
   methods : {
     increase1(){
       this.신고수1 +=1;
@@ -71,14 +47,9 @@ export default {
       this.신고수3 +=1;
     },
   },
-  components:{
-    DisCountRoom : DisCountRoom,
-    ModalTop,
-  },
 }
 
 </script>
-
 <style>
 body {
   margin : 0;
