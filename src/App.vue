@@ -27,7 +27,7 @@ export default {
       신고수2 : 0,
       신고수3 : 0,
       menus : ['home', 'Shop', 'About'],
-      products : ['역삼', '천호', '마포'],
+      products : ['역삼', '천호', '마포구'],
       원룸들 : oneRoomData,
     }
   },
